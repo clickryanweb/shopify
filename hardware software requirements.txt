@@ -1,0 +1,39 @@
+
+
+CPU:  Intel Core i5 or higher (10th Gen or newer) or equivalent processing with AMD 
+
+GPU: NVIDIA GTX or similar AMD Radeon 
+
+RAM: 16GB or 32GB DDR4/DDR5
+
+Storage: 1TB  SSD  (optional extra storage)
+
+Monitor: if possible may I request for an extended monitor 1440p resolution or higher
+
+
+
+
+---
+
+
+software:
+
+- design tools used by marketing departments to handle formats like .psd or .ai
+
+- Google Chrome 
+
+- Node.js and npm
+
+- git
+
+- Visual Studio Code (VS Code)
+
+- Sublime Text
+
+
+
+
+
+
+
+
