@@ -1,0 +1,23 @@
+
+
+//when used with {{content_for_index}}
+
+
+	soln: use json templates, 
+			declare sections -> content_for_index array will load the declared sections
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+

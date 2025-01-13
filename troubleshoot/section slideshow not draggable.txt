@@ -1,0 +1,35 @@
+
+
+
+https://www.tech-prastish.com/blog/how-to-create-custom-sections-in-shopify/
+
+
+cause...
+- theme may be old
+
+- the section do not have "presets" data
+
+* Presets must have a name and a category. Section presets and will be grouped by their category in the theme editor.
+
+
+
+{% schema %}
+{
+"name": "Section name",
+"settings": [],
+"presets": [
+{
+"name": "Welcome section Test",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+
+
+
+
+
+
+

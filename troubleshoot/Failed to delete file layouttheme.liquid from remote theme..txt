@@ -1,0 +1,37 @@
+
+
+
+│  Failed to delete file "config/settings_schema.json" from remote theme.      │
+│  You are not authorized to edit themes on "surewebsolution.myshopify.com".   │
+│                                                                              │
+│  You can't use Shopify CLI with development stores if you only have Partner  │
+│   staff member access. If you want to use Shopify CLI to work on a           │
+│  development store, then you should be the store owner or create a staff     │
+│  account on the store.                                                       │
+│                                                                              │
+│  If you're the store owner, then you need to log in to the store directly    │
+│  using the store URL at least once (for example, using                       │
+│  "https://surewebsolution.myshopify.com/admin") before you log in using      │
+│  Shopify CLI. Logging in to the Shopify admin directly connects the          │
+│  development store with your Shopify login.
+
+
+
+https://community.shopify.com/c/technical-q-a/problem-with-cli-3-serving-code-locally/m-p/1917342
+
+#clone current theme
+	shopify theme pull --store surewebsolution.myshopify.com
+
+
+#run cli
+	shopify theme dev --store surewebsolution.myshopify.com
+
+
+	#not
+
+
+	shopify theme dev --store surewebsolution
+
+
+
+

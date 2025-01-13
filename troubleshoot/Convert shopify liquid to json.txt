@@ -1,0 +1,13 @@
+Convert shopify liquid to json
+
+https://youtu.be/nehucqqODT0?si=gjbhxLHzcMJ3DPJM
+
+Basically it is converting liquid files in the  templates folder and the new json files will just reference liquid files i.e. copied in the sections folder 
+
+
+
+//note
+
+- no need to add section tag once the file is in section folder
+
+

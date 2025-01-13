@@ -1,0 +1,91 @@
+
+
+//gpt
+
+
+possible issues:
+
+- Schema Error, check json format
+
+
+! Theme File Compatibility:
+
+If your theme uses a JSON template structure (e.g., templates/page.faq.json), you need to ensure that the section is added to the JSON template under the sections key.
+Example for a page.faq.json file:
+
+
+{
+    "sections": {
+        "main": {
+            "type": "faq",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}
+
+
+---
+
+
+Steps to Debug:
+- Verify the File Exists:
+	Confirm that faq.liquid is saved in the sections/ directory.
+
+- Add Section to a Page:
+
+	Insert {% section 'faq' %} into the relevant page template, such as templates/page.faq.liquid.
+
+
+- Check for Errors in the Console:
+
+	Open the browser's developer tools to check for JavaScript or Liquid errors that might prevent the section from rendering.
+
+
+- Preview in Customize Editor:
+
+	Navigate to Customize in your Shopify Admin, then check the page or section category where the FAQ section should appear.
+
+
+
+--- for home page reg...
+
+
+Home Page (index.liquid or templates/index.json)
+
+- Shopify homepages use the index template, which allows dynamic sections.
+
+- Open templates/index.json and ensure that the FAQ section is declared there:
+
+
+{
+    "sections": {
+
+        "faq-section": {
+            "type": "faq",
+            "settings": {}
+        }
+    },
+
+
+    "order": [
+        "faq-section"
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

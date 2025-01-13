@@ -1,0 +1,9 @@
+
+- cause the sections' schema was updated, and the editor is still using the old schema.
+
+- soln: remove old block in the section-block editor, then save
+
+
+
+
+
