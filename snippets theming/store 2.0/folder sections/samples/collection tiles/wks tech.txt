@@ -1,0 +1,27 @@
+
+
+
+- create section: collection-tiles.liquid
+
+	- name
+	- edit blocks
+
+
+
+- snippets:
+
+	collection-grid-tile.liquid
+
+	collection-tile-item.liquid
+
+
+
+
+
+
+
+
+
+
+
+

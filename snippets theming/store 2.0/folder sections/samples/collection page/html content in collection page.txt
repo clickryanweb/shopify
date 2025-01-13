@@ -1,0 +1,56 @@
+
+
+
+https://marklreyes.medium.com/add-faq-to-shopify-collection-in-5-steps-969d0cef0969
+
+
+
+add: {% section 'collection-content' %} in /templates/collection.liquid
+
+
+collection-content.liquid
+
+
+
+
+        
+               {% for block in section.blocks %} 
+                  <div class="mobile newsletter-popup text-link">
+                    {{block.settings.header}}
+                  </div>
+               
+
+
+              {% endfor %}
+
+
+
+
+    {% schema %}
+  
+
+  {
+  "name": "HTML Content",
+  "settings": [],
+  "blocks": [{
+      "type": "header",
+      "name": "Content",
+      "settings": [{
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "html",
+          "id": "header",
+          "label": "Content"
+        }
+      ]
+    }
+  ]
+}
+
+
+    {% endschema %}
+
+
+

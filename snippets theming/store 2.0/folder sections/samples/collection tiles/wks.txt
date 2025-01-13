@@ -1,0 +1,44 @@
+
+
+idea: https://codepen.io/betallis/pen/mdyQQBe
+
+
+/- Homepage tiles. 
+	/We need a way for the user to add "Full width image", 
+
+	or half width image 
+		and have it appear as shown. 
+
+	/> 
+
+
+
+/- I think we could do this 
+	by just setting the section 
+		to float 
+		and then the CMS editor controls the image uploaded. 
+
+
+
+
+
+/- Need to consider that some images will be half width, 
+	some will be full width. 
+
+
+	/>
+
+
+
+/- Homepage tiles, 
+	- image text White / Bold. 
+	- Background transparent
+
+
+
+	/> new section to apply the tiles
+		so say if client want's to still use the original design it is still available
+
+
+
+

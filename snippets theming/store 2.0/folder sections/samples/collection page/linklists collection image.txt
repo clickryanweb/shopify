@@ -1,0 +1,59 @@
+
+
+//linklist...
+https://shopify.dev/docs/themes/liquid/reference/objects/linklist
+
+
+
+https://community.shopify.com/c/Shopify-Design/Linklist-with-Collection-Images/td-p/192742
+
+https://stackoverflow.com/questions/29700427/shopify-issue-with-url-image-in-linklists
+
+https://gist.github.com/jconnoll/1198090
+
+
+
+
+// sections/collection.liquid
+
+	{% section 'collection-slides' %}
+
+
+
+
+
+
+
+// sections/collection-slide.liquid
+
+
+//change "megantic-menu" based on you nav/menu handler...
+
+{% for link in linklists.megantic-menu.links %}
+
+{% comment %}
+	//test...
+	{{ link.type }}... this should be "collection_link", else recreate the nav menu...
+
+{% endcomment %}
+
+
+{% if link.type == 'collection_link' %}
+         {% assign linkCollection = link.object %}
+        <div class="featured-prod-item">
+            <a href="{{ link.url }}">
+             
+              <img src="{{ link.object.image.src | collection_img_url: 'large' }}" alt="{{ link.object.title | escape }}" data-test="{{ link.object.image.src | collection_img_url: 'large' }}" />
+
+               
+            {{link.title }}
+          
+          </a>
+        </div>
+    {% endif %}
+
+
+
+{% endfor %}
+
+

@@ -1,0 +1,146 @@
+
+//parent child structure...
+https://www.shopify.com.ph/partners/blog/shopify-link-list
+
+
+//child_active...
+https://shopify.dev/docs/themes/liquid/reference/objects/link#link-url
+
+
+
+
+
+
+{% comment %}
+  {{ page.url | within: collection | remove: "/collections/" | slice: 0, 5 }} ...
+
+
+
+{{ request.path }} <br><br><br>
+
+{% endcomment %}
+
+
+
+{% assign maincall = page.url | within: collection | remove: "/collections/" | slice: 0, 5    %} 
+
+
+
+<div class="grid-uniform" id="thegrid-uniform">
+
+
+{% for link in linklists.megantic-menu.links %}
+
+
+   
+
+
+
+        {% if link.links != blank %}
+
+
+
+            {% for child_link in link.links %}  
+  
+         
+  
+                  {% if child_link.links != blank %}
+                 
+                   
+
+                      {% assign comp1 = request.path | remove: "/collections/" %}
+                      {% assign comp2 = child_link.url | remove: "/collections/" %}
+  
+  {% comment %}   {{comp1 }} ...{{ comp2 }} <br><br><br>  {% endcomment %}
+
+ {% comment %}   
+ 
+  //test conditions...
+  
+      {% if child_link.active %}
+              class="active 
+
+          {% if child_link.child_active %} 
+
+              {% assign theactive = "active" %}
+
+          {% endif %}" 
+
+
+      {% endif %}
+  
+ {% endcomment %}
+  
+                          
+
+                           {% if comp1  == comp2 %}  
+                            {% assign theactive = "active" %}
+                      
+                          {% else %} 
+                              {% assign theactive = "hidden" %}
+                      
+                          {% endif %}
+    
+  
+    
+  
+      {% if child_link.child_active %} 
+  
+        {% assign theactive = "active" %}
+  
+      {% endif %}
+  
+  
+
+                              {% for grandchild_link in child_link.links %} 
+
+                          
+                              <div class="grid__item {{ child_link.title }}  {{ theactive }} ">
+
+                                  <a href= "{{ grandchild_link.url }}">
+
+                                   {% if grandchild_link.object.image %}
+                                        {% comment %} <img src="{{ grandchild_link.object.image.src | collection_img_url: 'medium' }}" /> {% endcomment %}
+
+                                      <div class="collection-grid__item-overlay grid__image grid__image--responsive" style="background-image: url('{{ grandchild_link.object.image.src | collection_img_url: 'medium' }}')"></div>
+
+                                   {% else %}
+                                        {% comment %} <img src="{{ link.object.image.src | collection_img_url: 'medium' }}" alt="{{ link.object.title | escape }}" data-test="{{ link.object.image.src | collection_img_url: 'medium' }}" />  {% endcomment %}
+
+                                      <div class="collection-grid__item-overlay grid__image grid__image--responsive" style="background-image: url('{{ link.object.image.src | collection_img_url: 'medium' }}')"></div>
+
+                                   {% endif %}
+
+                                      <div class="slide-product__title">
+                                        <span class="grid-product__title">{{ grandchild_link.title }}</span>
+                                      </div>
+
+                                    </a>
+
+                                </div>
+                    
+  
+  
+                            {% endfor %}
+                            
+          
+
+                {% endif %}  {% comment %}  if child_link.links != blank   {% endcomment %} 
+
+         
+            {% endfor %}
+         
+
+
+        {% endif %} 
+
+
+
+
+{% endfor %}
+
+
+</div>
+
+             
+

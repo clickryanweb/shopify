@@ -1,0 +1,55 @@
+
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+
+{% unless section.settings.hide_soldout !=false
+	and product.available !=true %}
+	
+<li> 
+
+
+<a style="color: {{settings.link_color}}" href="{{product.url}}"> {{product.title}} - {{ pproduct.price | money }} 
+
+	{% if product.available!= true %}
+
+		(SOLD OUT)
+	{% endif %}
+
+</a>
+
+</li>
+	{% endunless %}
+{% endfor %}
+
+</ul>
+
+
+{% schema %}
+
+{
+
+"name" : "Section name",
+"settings" : [
+
+	{
+
+	"type": "checkbox",
+	"id": "hide_soldout",
+	"label": "Hide Sold out products",
+	"default": false
+
+	}
+
+]
+
+
+
+}
+
+
+{% endschema %}

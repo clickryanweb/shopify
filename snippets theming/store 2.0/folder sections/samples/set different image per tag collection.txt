@@ -1,0 +1,59 @@
+
+
+https://community.shopify.com/c/Shopify-Design/Different-product-image-depending-on-collection/td-p/402779
+
+
+ <img src="{% if product.images[1] != blank %}{{ product.images[1] | product_img_url: '580x', scale: 2 }}
+
+{% else %}{{ product.featured_image | product_img_url: '580x', scale: 2 }}
+{% endif %}" 
+
+class="secondary" 
+
+alt="{{ alt_text | escape }}" />
+
+
+
+///////////////
+
+
+
+           
+                {% if productTags contains 'Unisex' %}
+
+ 				  
+              	  <img 
+                   src="{% if product.images[4] != blank %} {{ product.images[4] | img_url: '350x350' }}
+
+					{% else %} {{ product.featured_image | img_url: '350x350' }}
+
+					{% endif %}" 
+            
+            
+                   
+                   data-widths="[180, 370, 590, 740, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ product.featured_image.alt | escape }}"
+                    class="product--image lazyload {{ img_id_class }}">  
+              
+              {% else %}
+              
+                   
+               <img class="product--image lazyload {{ img_id_class }}"
+                   src="{{ product.featured_image | img_url: '150x150' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 370, 590, 740, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ product.featured_image.alt | escape }}">   
+      
+              
+              		
+
+                {% endif %}
+              
+
+
+
+              

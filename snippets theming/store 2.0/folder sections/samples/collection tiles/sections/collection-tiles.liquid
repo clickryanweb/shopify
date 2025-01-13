@@ -1,0 +1,264 @@
+<div class="wrapper">
+  {% if section.settings.title != blank %}
+  <div class="section-header text-center">
+    <h2 class="h1 section-header__title">{{ section.settings.title | escape }}</h2>
+    <hr class="hr--small">
+  </div>
+  {% endif %}
+
+
+  {% comment %}  <div class="grid collection-grid"> {% endcomment %}
+
+
+    <div class="tile-grid">
+
+    {% comment %}
+      Show up to 9 collections.
+      Frontpage will be excluded if collections defined automatically.
+      {% endcomment %}
+      {% assign isEmpty = true %}
+      {% assign collection_index = 0 %}
+      {% assign collection_count = 0 %}
+      {% assign collection_limit = section.blocks.size %}
+
+    {% comment %}
+      Add one to the collection limit to offset chance of Frontpage being included
+      {% endcomment %}
+      {% assign collection_limit = collection_limit | plus: 1 %}
+
+    {% comment %}
+      Calculate number of collections to show, making sure Frontpage isn't one
+      {% endcomment %}
+      {% for collection in section.blocks limit: collection_limit %}
+      {% assign collection_count = collection_count | plus: 1 %}
+      {% endfor %}
+
+      {% if collection_count > 0 %}
+      {% assign isEmpty = false %}
+      {% endif %}
+
+      {% assign divisible_by_three = collection_count | modulo: 3 %}
+      {% assign divisible_by_two = collection_count | modulo: 2 %}
+
+    {% comment %}
+      Loop through the collections to display
+      {% endcomment %}
+      {% for block in section.blocks limit: collection_limit %}
+      {% assign collection = collections[block.settings.collection] %}
+      {% assign collection_index = collection_index | plus: 1 %}
+      {% assign collection_handle = collection.handle %}
+      {% include 'collection-grid-tile' %}
+      {% endfor %}
+
+      {% if isEmpty %}
+      <div class="wrapper">
+        <div class="grid">
+          <div class="grid__item">
+            <div class="rte text-center">
+              {{ 'home_page.onboarding.no_content' | t }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+
+
+  {% schema %}
+  {
+    "name": {
+      "de": "Kategorieliste",
+      "en": "Collection tiles",
+      "es": "Lista de colecciones",
+      "fr": "Liste des collections",
+      "it": "Elenco delle collezioni",
+      "ja": "コレクションリスト",
+      "pt-BR": "Lista de coleções"
+    },
+    "max_blocks": 9,
+    "class": "index-section feture-col",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": {
+          "de": "Überschrift",
+          "en": "Heading",
+          "es": "Título",
+          "fr": "Titre",
+          "it": "Heading",
+          "ja": "見出し",
+          "pt-BR": "Título"
+        },
+        "default": {
+          "de": "Kategorieliste",
+          "en": "Collection tiles",
+          "es": "Lista de colecciones",
+          "fr": "Liste des collections",
+          "it": "Elenco delle collezioni",
+          "ja": "コレクションリスト",
+          "pt-BR": "Lista de coleções"
+        }
+      },
+      {
+        "type": "image_picker",
+        "id": "coll_imageq",
+        "label": "Image",
+        "info": "image should be 170px x 35px"
+      },
+      {
+        "type": "text",
+        "id": "afterpay_txt",
+        "label": "Subtittle",
+        "default": "Shop Now" 
+      },
+      {
+        "type": "text",
+        "id": "afterpay_btn",
+        "label": "Button label",
+        "default": "Shop Now" 
+      },
+      {
+        "type": "collection",
+        "id": "Url_links",
+        "label": "Collection Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "coll_imager",
+        "label": "Image",
+        "info": "image should be 160px x 42px"
+      },
+      {
+        "type": "text",
+        "id": "zippay_txt",
+        "label": "Subtittle",
+        "default": "buy now"  
+      },
+      {
+        "type": "text",
+        "id": "zippay_btn",
+        "label": "Button label",
+        "default": "Shop Now" 
+      },
+      {
+        "id": "Url_links2",
+        "type": "collection",
+        "label": "Collection" 
+      }
+    ],
+    "presets": [
+      {
+        "name": {
+          "de": "Kategorieliste",
+          "en": "Collection tiles",
+          "es": "Lista de colecciones",
+          "fr": "Liste des collections",
+          "it": "Elenco delle collezioni",
+          "ja": "コレクションリスト",
+          "pt-BR": "Lista de coleções"
+        },
+        "category": {
+          "de": "Kategorie",
+          "en": "Collection",
+          "es": "Colección",
+          "fr": "Collection",
+          "it": "Collezione",
+          "ja": "コレクション",
+          "pt-BR": "Coleção"
+        },
+        "blocks": [
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": {
+          "de": "Kategorie",
+          "en": "Collection",
+          "es": "colección",
+          "fr": "Collection",
+          "it": "collezione",
+          "ja": "コレクション",
+          "pt-BR": "Coleção"
+        },
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": {
+              "de": "Kategorie",
+              "en": "Collection",
+              "es": "colección",
+              "fr": "Collection",
+              "it": "collezione",
+              "ja": "コレクション",
+              "pt-BR": "Coleção"
+            }
+          },
+          {
+            "type":"image_picker",
+            "id":"col_custom_image",
+            "label":"collection custom Image"
+          },
+          {
+            "type": "url",
+            "id": "col_cus_lnks",
+            "label": "collection custom Link"
+          },
+
+
+          {
+            "type": "text",
+            "id": "coll_heads",
+            "label": "Heading"
+          },
+
+     
+       
+
+
+          {
+           "type": "select",
+           "id": "coll_style",
+           "options": [
+            { "value": "full", "label": "Full"},
+            { "value": "half", "label": "Half"}
+          ],
+           "label": "full or half?"
+         }
+
+
+       /*   {
+            "type": "text",
+            "id": "coll_butns",
+            "label": "Button text"
+          },
+
+
+         {
+          "type": "url",
+          "id": "coll_butn_lnks",
+          "label": "Button Link"
+        }
+*/
+
+      ]
+      }
+    ]
+  }
+  {% endschema %}

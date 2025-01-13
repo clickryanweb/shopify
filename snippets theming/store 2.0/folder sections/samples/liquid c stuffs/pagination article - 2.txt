@@ -1,0 +1,36 @@
+
+
+//
+
+{% paginate blog.articles by 1 %}
+  <h1>{{ blog.title }}</h1>
+  {% for article in blog.articles %}
+    <div>
+      <h2>
+        <a href="{{ article.url}}">{{ article.title }}</a>
+      </h2>
+    </div>
+  {% endfor %}
+
+
+//can be reuse to other page like collections - using render tag and save this lines in snippet folder...
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {% if paginate.previous.is_link %}
+        <a href="{{ paginate.previous.url}}">{{ paginate.previous.title }}</a>
+      {% endif %}
+      {% for page in paginate.parts %}
+        <a href="{{ page.url}}">{{ page.title }}</a>
+      {% endfor %}
+      {% if paginate.next.is_link %}
+        <a href="{{ paginate.next.url}}">{{ paginate.next.title }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+// end can be reusable...
+
+{% endpaginate %}
+
+

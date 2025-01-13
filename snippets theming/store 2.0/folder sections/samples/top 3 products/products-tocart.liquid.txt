@@ -1,0 +1,76 @@
+<div class="multiple-products-section">
+    {% for block in section.blocks %}
+      {% assign product_handle = block.settings.product %}
+      
+      {% if product_handle %}
+        {% assign product = all_products[product_handle] %}
+        
+        {% if product %}
+          <div class="product-item">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | img_url: 'medium' | default: 'placeholder-image-url' }}" alt="{{ product.title }}">
+              <h3>{{ product.title }}</h3>
+              {% comment %} <p>{{ product.price | money }}</p> {% endcomment %}
+            </a>
+          </div>
+        {% else %}
+          <p>Product not found for handle: {{ product_handle }}</p>
+        {% endif %}
+      {% else %}
+        <p>No product handle found for this block.</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% schema %}
+  {
+    "name": "Multiple Products Section",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "product_block",
+        "name": "Product Block",
+        "settings": [
+          {
+            "type": "product",
+            "label": "Select Product",
+            "id": "product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Default",
+        "category": "Custom"
+      }
+    ]
+  }
+  {% endschema %}
+  
+  {% stylesheet %}
+  .multiple-products-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .product-item {
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .product-item h3 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+  }
+  .product-item p {
+    font-size: 14px;
+    color: #333;
+  }
+  {% endstylesheet %}
+  

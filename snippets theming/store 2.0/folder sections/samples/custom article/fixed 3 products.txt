@@ -1,0 +1,364 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+<style> 
+  .article-template__product-row {
+    display: flex;
+        justify-content: center;
+        gap: 20px;
+        /* margin: auto; */
+        text-align: center;
+  }
+  
+  .article-template__product {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .article-template__product img {
+    width: 100%;  /* Makes the image responsive */
+    max-width: 200px;  /* Limits the image size */
+    height: auto;
+  }
+  
+  .article-template__product p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+</style>
+
+<article class="article-template">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="page-width page-width--narrow">
+          {% render block %}
+        </div>
+      {%- when 'featured_image' -%}
+        {%- if article.image -%}
+          <div
+            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div
+              class="article-template__hero-{{ block.settings.image_height }} media"
+              {% if block.settings.image_height == 'adapt' and article.image %}
+                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+              {% endif %}
+            >
+              <img
+                srcset="
+                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                  {{ article.image | image_url }} {{ article.image.width }}w
+                "
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="{{ article.image | image_url: width: 1100 }}"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                alt="{{ article.image.alt | escape }}"
+              >
+            </div>
+          </div>
+        {%- endif -%}
+
+      {%- when 'title' -%}
+        <header
+          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <h1
+            class="article-template__title"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date -%}
+            <span class="circle-divider caption-with-letter-spacing">
+              {{- article.published_at | time_tag: format: 'date' -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span class="caption-with-letter-spacing">
+              <span>{{ article.author }}</span>
+            </span>
+          {%- endif -%}
+        </header>
+
+      {%- when 'content' -%}
+        <div
+          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{ article.content }}
+        </div>
+
+
+      {% when 'addl-content' %}
+        <div
+            class="article-template__content page-width page-width--narrow rte"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.body_content }}
+          </div>
+          
+          
+      {%- when 'share' -%}
+        <div
+          class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {% assign share_url = request.origin | append: article.url %}
+          {% render 'share-button', block: block, share_link: share_url %}
+        </div>
+
+        <div class="article-template__product-row">
+        {% when 'product_1' %}
+          {% assign product = block.settings.product_1 %}
+          {% if product %}
+            <div class="product-item">
+              <h2>{{ product.title }}</h2>
+              <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+              <p>{{ product.description | truncatewords: 20 }}</p>
+              <button 
+                class="add-to-cart-btn" 
+                data-product-id="{{ product.id }}"
+                data-variant-id="{{ product.variants.first.id }}">
+                Add to Cart
+              </button>
+            </div>
+          {% endif %}
+    
+        {% when 'product_2' %}
+          {% assign product = block.settings.product_2 %}
+          {% if product %}
+            <div class="product-item">
+              <h2>{{ product.title }}</h2>
+              <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+              <p>{{ product.description | truncatewords: 20 }}</p>
+              <button 
+                class="add-to-cart-btn" 
+                data-product-id="{{ product.id }}"
+                data-variant-id="{{ product.variants.first.id }}">
+                Add to Cart
+              </button>
+  
+            </div>
+          {% endif %}
+    
+        {% when 'product_3' %}
+          {% assign product = block.settings.product_3 %}
+          {% if product %}
+            <div class="product-item">
+              <h2>{{ product.title }}</h2>
+              <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+              <p>{{ product.description | truncatewords: 20 }}</p>
+              <button 
+                class="add-to-cart-btn" 
+                data-product-id="{{ product.id }}"
+                data-variant-id="{{ product.variants.first.id }}">
+                Add to Cart
+              </button>
+            </div>
+          {% endif %}
+
+</div>
+
+
+    {%- endcase -%}
+
+    
+  {%- endfor -%}
+
+  <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
+      <span class="icon-wrap">
+        <span class="svg-wrapper">
+          {{- 'icon-arrow.svg' | inline_asset_content -}}
+        </span>
+      </span>
+      {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
+    </a>
+  </div>
+
+  
+  
+</article>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+
+<!-- AJAX Add to Cart Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.add-to-cart-btn');
+  
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const variantId = button.getAttribute('data-variant-id');
+  
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: 1 })
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
+        .then(data => {
+          alert('Product added to cart!');
+          console.log('Cart:', data);
+        })
+        .catch(error => {
+          alert('Failed to add product to cart.');
+          console.error('Error:', error);
+        });
+      });
+    });
+  });
+  </script>
+
+
+{% schema %}
+
+{
+  "name": "Top Products Section",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "Featured Image",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "Adapt"
+            },
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "adapt",
+          "label": "Image Height"
+        }
+      ]
+    },
+    {
+      "type": "product_1",
+      "name": "Product 1",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Select Product 1"
+        }
+      ]
+    },
+    {
+      "type": "product_2",
+      "name": "Product 2",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Select Product 2"
+        }
+      ]
+    },
+    {
+      "type": "product_3",
+      "name": "Product 3",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Select Product 3"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Article Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "Show Date"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "Show Author"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    
+    },
+    {
+      "type": "addl-content",
+      "name": "Article Content",
+      "limit": 5,
+      "settings": [
+        {
+            "type": "textarea",
+            "label": "Body Content",
+            "id": "body_content",
+            "default": "Enter your content here."
+        }
+    ],
+    },
+    {
+      "type": "share",
+      "name": "Social Sharing",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "Share Text",
+          "default": "Share this article"
+        },
+        {
+          "type": "paragraph",
+          "content": "Social sharing buttons"
+        }
+      ]
+    }
+  ]
+}
+
+
+{% endschema %}

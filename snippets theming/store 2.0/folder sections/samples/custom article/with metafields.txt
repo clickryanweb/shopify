@@ -1,0 +1,119 @@
+
+As of now, Shopify doesn't have a built-in metafield type specifically designed to select a custom template with inner blocks. However, you can achieve this functionality with a combination of Custom Sections and Dynamic Blocks, which are available with Shopify Online Store 2.0 themes. By leveraging these, you can design flexible, block-based templates that can be selected and populated via metafields.
+
+Here's a step-by-step guide on how you can create something close to this:
+
+1. Create a Custom Section for Blocks  
+First, you'll want to create a custom section that can hold your inner blocks. This custom section will be added to a page or post dynamically, and within this section, you can define various "blocks" (like text, images, or even other custom content).
+
+Example:
+Create a section called `custom-template-with-blocks.liquid`.
+
+```liquid
+{% schema %}
+{
+  "name": "Custom Template with Blocks",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Text Content",
+          "id": "text_content",
+          "default": "Enter some text here"
+        }
+      ]
+    },
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Select Image",
+          "id": "image",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+/* Add custom styling for your block content if necessary */
+{% endstylesheet %}
+
+{% javascript %}
+/* Add any custom JavaScript to enhance functionality */
+{% endjavascript %}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'text_block' %}
+      <div class="text-block">
+        <p>{{ block.settings.text_content }}</p>
+      </div>
+    {% when 'image_block' %}
+      <div class="image-block">
+        <img src="{{ block.settings.image | img_url: 'medium' }}" alt="Image Block">
+      </div>
+  {% endcase %}
+{% endfor %}
+```
+
+This section defines two types of blocks: one for text content and one for an image. When a merchant adds this section to a page, they can customize the blocks with content through the theme editor.
+
+
+
+2. Create a Metafield to Select the Custom Section  
+Now, you need to create a metafield for the blog post (or another content type) where you can reference the section and make it selectable. You would use a file metafield or a reference metafield (depending on what you're trying to achieve). 
+
+While Shopify metafields themselves don’t directly allow you to "select a section," you can make use of a file metafield or text metafield to store the section name or ID.
+
+For example:
+
+1. Go to your Shopify Admin > Settings > Metafields > Blog Posts (or the content you’re working with).
+2. Create a metafield with a type of Text or File (depending on the content you want to store).
+3. For Text, you might store the name of the section or the section ID. For example, `"custom-template-with-blocks"`.
+   
+   - This will act as a reference to the custom section.
+
+
+
+
+3. Modify the Blog Post Template to Include the Section  
+Next, in your `article.liquid` or your blog post template, you'll check for the metafield and dynamically render the custom section.
+
+
+{% if article.metafields.custom.template_section %}
+  {% section article.metafields.custom.template_section %}
+{% endif %}
+
+
+Here, the metafield `article.metafields.custom.template_section` contains the name of the section you want to render. If the metafield exists and has a value (such as `"custom-template-with-blocks"`), it will render the corresponding section and its inner blocks.
+
+4. Optional: Add Content to the Section in Theme Editor  
+Once the custom section is rendered, you can use the Theme Editor to add and configure the blocks (text, image, etc.) for each individual blog post. The blocks' content can be dynamically populated through the editor, allowing you to create custom content per post.
+
+Summary:
+
+While Shopify doesn’t currently have a metafield specifically for selecting a custom template with inner blocks, you can achieve a similar effect by:
+
+1. Creating a custom section with blocks in your theme (using schema and block settings).
+2. Creating a metafield to store the name or ID of the section you want to render dynamically.
+3. Using Liquid code to conditionally render the section in your template (e.g., blog posts, pages).
+
+This setup will give you a flexible system for dynamically selecting and rendering custom templates with blocks within your content.
+
+
+

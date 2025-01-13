@@ -1,0 +1,25 @@
+
+
+
+- after creating template file (products-tocart.liquid) in sections folder
+
+
+
+- create products-tocart.json
+
+
+{
+  "sections": {
+    "main": {
+      "type": "products-tocart",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
+
+
+

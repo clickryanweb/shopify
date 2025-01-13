@@ -1,0 +1,130 @@
+
+
+https://marklreyes.medium.com/add-faq-to-shopify-collection-in-5-steps-969d0cef0969
+
+
+
+Step 1
+First and foremost, you’ll need to embrace Shopify’s opinion on how code is organized.
+Assuming you have access to your store, jump in to Shopify Admin > Online Store > Themes. From the Actions drop-down menu, click Edit code and you’ll be navigated to the online code editor built into Shopify.
+Take stock on how Shopify organizes its codebase. You cannot deviate from this opinion. It is a tight structure and the abstractions are intentional.
+Step 2
+Navigate to Sections directory, click Add a new section and create this new file: collection-faq.liquid.
+Step 3
+The code. Here’s the breakdown of that in short order:
+Line 7, 34: The for loop keys off from schema settings defined from line 44.
+Line 8, 10, 33: A decision will be made to either print a header or a panel.
+Line 23, 25, 27: A decision will be made to either display or hide the answer.
+Lines 40–91: The required schema tag which ultimately defines your UI and its editable fields and initial settings.
+Line 93, 94: optional custom CSS styling to lay on top of this section.
+Line 96, 97: optional custom JavaScript to lay on top of this section.
+Step 4
+Reference this newly created section to on your theme’s collection template: /templates/collection.liquid
+{% section 'collection-faq' %}
+Frankly, you could add this interface to whatever template you see is most fitting for your use case.
+Step 5
+Test it! Navigate to Shopify Admin > Online Store > Themes and click Customize.
+
+
+
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			<div class="container-fluid">
+				<div id="container-category-faq">
+					{% for block in section.blocks %}
+					{% if block.type == 'header' %}
+						<h3 id="category-faq-title" class="text-center">{{block.settings.header}}</h3>
+					{% else %}
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="heading-{{block.settings.id}}">
+								<h4 class="panel-title">
+									{% if block.settings.display == true %}
+										<a role="button" data-toggle="collapse" href="#collapse-{{block.settings.id}}" aria-expanded="true" aria-controls="collapse-{{block.settings.id}}">
+									{% else %}
+										<a role="button" data-toggle="collapse" href="#collapse-{{block.settings.id}}" aria-expanded="false" aria-controls="collapse-{{block.settings.id}}">
+									{% endif %}
+										{{block.settings.question}}
+									</a>
+								</h4>
+							</div>
+							{% if block.settings.display == true %}
+								<div id="collapse-{{block.settings.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-{{block.settings.id}}">
+							{% else %}
+								<div id="collapse-{{block.settings.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{block.settings.id}}">
+							{% endif %}
+								<div class="panel-body">
+									{{block.settings.answer}}
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% schema %}
+{
+    "name": "FAQ",
+    "settings": [],
+	"blocks": [
+		{
+			"type": "header",
+			"name": "Header",
+			"settings": [{
+					"type": "header",
+					"content": "Header"
+				},
+				{
+					"type": "text",
+					"id": "header",
+					"label": "Header"
+				}
+			]
+		},
+		{
+            "type": "slide",
+            "name": "Question",
+            "settings": [{
+                    "type": "header",
+                    "content": "Question Item"
+                },
+                {
+                    "type": "text",
+                    "id": "id",
+                    "label": "id — text"
+				},
+				{
+					"type":      "checkbox",
+					"id":        "display",
+					"label":     "Display Answer",
+					"default":   false
+				 },
+                {
+                    "type": "text",
+                    "id": "question",
+                    "label": "Question — text"
+                },
+                {
+                    "type": "html",
+                    "id": "answer",
+                    "label": "Answer — html"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

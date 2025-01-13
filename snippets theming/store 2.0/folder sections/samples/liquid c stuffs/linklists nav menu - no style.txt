@@ -1,0 +1,23 @@
+//in header.liquid
+
+<ul>
+    {% for link in linklists['main-menu']. Links %} {% if link. Links != empty %}
+    <li>
+    <a href="{{ link.url}}">{{ link.title}}</a>
+    </li>
+    <ul>
+    {% for childlink in link. Links %}
+    <li>
+    </li>
+    <a href="{{ childlink.url}}">{{ childlink.title}}</a>
+    {% endfor %}
+    </ul>
+    {% else %)
+    <li>
+    <a href="{{link.url}}">{{ link.title}}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    I
+    </ul>
+
