@@ -1,0 +1,42 @@
+
+//best option... add css / js in assets folder (include map files)...
+
+<head>
+	{{ 'bootstrap.min css' | asset_url | stylesheet_tag }}
+
+</head>
+
+
+
+
+// add js before </body>
+
+	{{ 'bootstrap.min.js' | asset_url | script_tag }}
+
+
+----
+
+
+
+//other option... in theme.liquid, inside <head> tag
+
+
+<head>
+	{{ 'https://cdn. url of bootstrap css' | stylesheet_tag }}
+
+</head>
+
+
+
+
+// add js before </body>
+
+	{{ 'the cdn url of the bootstrap js' | script_tag }}
+
+
+
+
+
+
+
+

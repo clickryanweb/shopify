@@ -1,0 +1,17 @@
+
+
+Shopify does 
+	not natively support a metafield type that directly acts as a repeater (e.g., an array of multiple values with different types) 
+	or allows for inner blocks in the blog post editor. 
+
+However, you can implement a similar functionality using JSON metafields and custom Liquid code.
+
+
+---
+
+repeaters or inner blocks in Shopify are currently limited to the Theme Editor and custom sections. 
+
+
+
+
+

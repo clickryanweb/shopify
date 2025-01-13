@@ -1,0 +1,11 @@
+//echo expression
+
+
+{% echo product.title %}
+
+{% liquid
+  echo product.price | money
+%}
+
+
+
