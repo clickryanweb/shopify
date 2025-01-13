@@ -1,0 +1,35 @@
+note: be sure u have the requirements (git, npm, node js, shopify cli)
+
+cd to the folder...
+	ex: cd/thetheme
+
+
+	shopify theme pull --store=surewebsolution.myshopify.com
+
+
+Run the app.
+	shopify theme dev 
+
+
+Validate the theme.
+	shopify theme check
+
+
+
+Uploads your local theme files to the connected store, overwriting the remote…
+	shopify theme push
+		> select the theme name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
