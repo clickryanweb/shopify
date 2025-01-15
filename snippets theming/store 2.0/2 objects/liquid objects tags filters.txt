@@ -1,0 +1,52 @@
+
+
+
+
+
+- categorize by 3 features
+
+	- objects, wrapped in 2 curly braces {{shop.name}}
+
+		- global objects, can use in al files
+	
+		- content objects (3 content_for_header, content_for_index , content_for_layout)
+			- {{content_for_header}}, for theme.liquid, will load all js 
+			- {{content_for_index}} (for index.liquid) (being deprecated by json template)
+			- {{content_for_layout}} , whatever is inside of the template files, etc.
+
+
+
+	- tags, programming logic {% if...  %}
+		ex: iteration tags, theme tags, variable tags
+
+	- filters, method that modify the value/output of an object, denoted by a "|" pipe symbol
+		ex: {{ product.title | upcase}}, upper case the product title
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

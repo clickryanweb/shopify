@@ -1,0 +1,21 @@
+
+
+
+best for reference snippets...
+
+
+// Note
+When you render a snippet using the render tag, you can't use the include tag inside the snippet.
+
+
+
+
+Passing variables to a snippet
+
+ex:
+
+	{% render 'filename', variable: value %}
+
+
+//Variables that have been created outside of a snippet can be passed to a snippet as parameters on the render tag.
+

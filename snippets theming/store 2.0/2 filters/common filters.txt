@@ -1,0 +1,103 @@
+
+
+Shopify provides a variety of Liquid filters to help manipulate and display data dynamically. These filters are commonly used in themes for formatting text, numbers, dates, arrays, and more.
+Here’s a categorized list of commonly used Shopify Liquid filters with examples:
+________________________________________
+1. Text Filters
+
+upcase / downcase: Converts text to uppercase or lowercase.
+{{ "shopify" | upcase }}  <!-- Output: SHOPIFY -->
+{{ "SHOPIFY" | downcase }}  <!-- Output: shopify -->
+capitalize: Capitalizes the first letter of a string.
+{{ "shopify store" | capitalize }}  <!-- Output: Shopify store -->
+truncate: Trims text to a specified length and adds an ellipsis (...) by default.
+{{ "Shopify Development" | truncate: 10 }}  <!-- Output: Shopify... -->
+truncatewords: Trims text to a specified number of words.
+{{ "Shopify theme development guide" | truncatewords: 3 }} <!-- Output: Shopify theme development... -->
+replace / replace_first: Replaces all or the first occurrence of a string.
+{{ "Hello World" | replace: "World", "Shopify" }}  <!-- Output: Hello Shopify -->
+{{ "Hello World World" | replace_first: "World", "Shopify" }}  <!-- Output: Hello Shopify World -->
+strip / strip_newlines: Removes whitespace or newline characters.
+{{ "   Shopify   " | strip }}  <!-- Output: Shopify -->
+________________________________________
+
+
+2. Number Filters
+abs: Returns the absolute value of a number.
+{{ -42 | abs }}  <!-- Output: 42 -->
+ceil: Rounds a number up to the nearest whole number.
+{{ 4.3 | ceil }}  <!-- Output: 5 -->
+floor: Rounds a number down to the nearest whole number.
+{{ 4.7 | floor }}  <!-- Output: 4 -->
+round: Rounds a number to the nearest whole number or specified decimal places.
+{{ 4.567 | round: 2 }}  <!-- Output: 4.57 -->
+times / divided_by: Multiplies or divides a number.
+{{ 5 | times: 3 }}  <!-- Output: 15 -->
+{{ 10 | divided_by: 2 }}  <!-- Output: 5 -->
+plus / minus: Adds or subtracts a number.
+{{ 10 | plus: 5 }}  <!-- Output: 15 -->
+{{ 10 | minus: 5 }}  <!-- Output: 5 -->
+
+
+________________________________________
+3. Date Filters
+date: Formats a date using custom or predefined formats. 
+{{ "2024-12-25" | date: "%B %d, %Y" }}  <!-- Output: December 25, 2024 -->
+{{ "now" | date: "%Y-%m-%d" }}  <!-- Output: Current date in YYYY-MM-DD -->
+
+
+________________________________________
+4. Array Filters
+
+join: Joins array elements with a specified delimiter.
+
+{{ collection.tags | join: ", " }}  <!-- Output: tag1, tag2, tag3 -->
+first / last: Retrieves the first or last element of an array.
+{{ collection.tags | first }}  <!-- Output: tag1 -->
+{{ collection.tags | last }}  <!-- Output: tag3 -->
+size: Returns the size of an array or string.
+{{ collection.products | size }}  <!-- Output: Number of products -->
+
+
+________________________________________
+5. Money Filters
+money / money_with_currency: Formats numbers as currency. 
+{{ 1234.56 | money }}  <!-- Output: $1,234.56 -->
+{{ 1234.56 | money_with_currency }}  <!-- Output: $1,234.56 USD -->
+
+
+________________________________________
+6. URL Filters
+url_encode: Encodes a string for use in a URL.
+{{ "Shopify Store" | url_encode }}  <!-- Output: Shopify+Store -->
+url_for_type / url_for_vendor: Generates URLs for product types or vendors.
+{{ 'T-Shirts' | url_for_type }}  <!-- Output: /collections/types?q=T-Shirts -->
+
+
+________________________________________
+7. Logic Filters
+default: Provides a fallback value if the variable is empty.
+{{ product.title | default: "Untitled Product" }}
+if Filters: Combine with conditional tags to manage output based on dynamic values.
+
+
+
+________________________________________
+8. Advanced Filters
+map: Extracts values from an array of objects.
+{{ collection.products | map: "title" | join: ", " }}
+uniq: Removes duplicate values from an array.
+{{ product.tags | uniq | join: ", " }}
+sort: Sorts an array of values.
+{{ collection.products | map: "title" | sort }}
+reverse: Reverses the order of an array.
+{{ collection.products | reverse }}
+
+
+________________________________________
+These filters help you manipulate data and present it dynamically on your Shopify store. Let me know if you'd like detailed examples or help applying these filters!
+
+
+
+
+

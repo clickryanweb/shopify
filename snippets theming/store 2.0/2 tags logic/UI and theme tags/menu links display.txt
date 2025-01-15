@@ -1,0 +1,13 @@
+
+
+https://stackoverflow.com/questions/57658339/directly-access-nested-linklist-in-shopify
+
+
+//main-menu change for navigation handler name...
+
+
+{%- for link in linklists.main-menu.links[1].links -%}
+
+{%- endfor -%}
+
+

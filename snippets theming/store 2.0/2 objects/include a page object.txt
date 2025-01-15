@@ -1,0 +1,12 @@
+
+
+<div id="size-chart" class="mfp-hide">
+
+{{ pages.size-chart.content }}
+
+</div>
+
+
+
+//see also: https://shopify.dev/docs/api/liquid/tags/include
+

@@ -1,0 +1,5 @@
+
+
+https://shopify.dev/docs/api/liquid/objects/customer
+
+

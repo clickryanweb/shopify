@@ -1,0 +1,7 @@
+
+
+
+<div class="thetile {% if block.settings.collection != blank %}--{{ block.id }}{% endif %}"  {{ block.shopify_attributes }}>
+
+
+

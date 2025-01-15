@@ -1,0 +1,23 @@
+
+
+https://community.shopify.com/c/Shopify-Design/If-product-tag-contains-quot-quot-Display-quot-quot/td-p/424185
+
+
+
+
+<!--Convert the tags into a string by joining them with COMMA-->
+{% assign productTags = product.tags | join: ', ' %}
+<!--Now Check for the desired tag name-->
+{% if productTags contains 'Show_Size_Chart' %}
+
+Okay.. I found the tag
+
+{% else %}
+
+<!--Tag not found :( -->
+{% endif %}
+
+
+
+
+

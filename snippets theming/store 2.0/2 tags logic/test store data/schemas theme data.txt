@@ -1,0 +1,55 @@
+
+
+
+config/settings_schema.json
+	- json will come-up at "customize theme now" (customizer)
+
+
+config/settings_data.json
+	- where all inputs that are saved at customizer are stored 
+
+
+
+// apply the settings to liquid using json object "ID"...
+
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+	
+<li> 
+
+
+<a style="color: {{settings.link_color}}" href="{{product.url}}"> {{product.title}} - {{ pproduct.price | money }} 
+
+{% if product.available!= true %}
+
+	(SOLD OUT)
+{% endif %}
+
+</a>
+
+</li>
+	
+{% endfor %}
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

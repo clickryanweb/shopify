@@ -1,0 +1,18 @@
+
+
+metafield definition: article 
+Namespace and key: custom.template-with-blocks
+file to use: main-article.liquid
+
+
+
+
+{% if article.metafields.custom['template-with-blocks'] %}
+  <div class="article-metafield">
+
+    <p>{{ article.metafields.custom['template-with-blocks'] }}</p>
+
+  </div>
+{% endif %}
+
+

@@ -1,0 +1,28 @@
+
+
+
+{%  for index in (1..5) %}
+
+
+	{{ index }}
+
+
+{% endfor  %}
+
+
+
+// yyou can also use...
+
+first
+index
+index0, start with zero 
+last
+length
+rindex, reverse index, countdown
+
+
+
+
+
+
+

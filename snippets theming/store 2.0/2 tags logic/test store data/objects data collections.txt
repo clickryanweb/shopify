@@ -1,0 +1,48 @@
+
+
+{{ product.url | within: collection }}...{{ link.title }}... {{ child_link.title }}...{{ child_link.handle }}...{{ child_link.url }}...{{ collection.handle }} <br><br><br>
+                           
+
+
+
+
+{{ link.url }}... <br><br><br><br><br><br><br><br><br><br><br>
+
+
+	/collections/mens-streetwear-tops
+
+
+{{ link.title }},,,<br><br><br><br><br><br><br><br><br><br><br><br>
+   
+
+	mens
+
+
+
+
+
+{% for link in linklists.megantic-menu.links %}
+
+
+
+
+  {% for child_link in link.links %}
+
+	{{ child_link.handle }}...{{ collection.handle }} <br><br><br>
+
+   
+  {% endfor %}
+
+
+{% endfor %}
+
+
+
+
+https://community.shopify.com/c/Shopify-Design/get-current-url-in-liquid-file/td-p/416405
+//url...
+{{request.path}}
+
+
+
+

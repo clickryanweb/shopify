@@ -1,0 +1,12 @@
+
+// this is based on admin user login experience...
+
+{% if shop.customer_accounts_enabled %}
+
+	... routes.account...
+	...
+
+{% endif %}
+
+
+

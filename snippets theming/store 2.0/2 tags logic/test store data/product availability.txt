@@ -1,0 +1,25 @@
+
+
+{% comment %} with link {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+	<li> <a href="{{product.url}}"> {{product.title}} - {{ pproduct.price | money }} 
+
+{% if product.available!= true %}
+{{product.available}}
+	(SOLD OUT)
+{% endif %}
+
+</a></li>
+	
+{% endfor %}
+
+</ul>
+
+
+

@@ -1,0 +1,50 @@
+
+https://nerdwith.us/multi-level-link-list-menus-in-shopify-themes/
+
+
+//grand child nested...
+https://www.shopify.com.ph/partners/blog/shopify-link-list
+
+
+
+{% for link in linklists.megantic-menu.links %}
+
+
+  {% for child_link in link.links %}
+
+
+	{% for grandchild_link in child_link.links %} 
+
+			
+			{% if link.title ==  "Mens" %}
+
+				{% assign child_link1 = child_link.title | downcase %}
+				{% assign child_linkh = child_link.handle | downcase %}
+
+
+
+				
+		
+    
+				{% if collection.handle  contains child_link.handle %}
+
+					
+             			{{ child_link.title }}...{{ child_link.handle }}...{{ child_link.url }}...{{ collection.handle }} <br><br><br>
+
+             
+
+			{% endif %} {% endif %}
+			
+
+
+
+
+	{% endfor %}
+   
+  {% endfor %}
+
+
+{% endfor %}
+
+
+

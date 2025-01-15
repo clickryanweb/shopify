@@ -1,0 +1,14 @@
+
+
+https://shopify.dev/docs/themes/liquid/reference/basics/operators#basic-operators
+
+
+https://shopify.github.io/liquid/basics/operators/
+
+
+
+{% if product.type == "Shirt" or product.type == "Shoes" %}
+  This is a shirt or a shoe.
+{% endif %}
+
+

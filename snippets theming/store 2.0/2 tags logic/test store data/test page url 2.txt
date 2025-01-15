@@ -1,0 +1,74 @@
+
+
+
+{% comment %}
+  {{ page.url | within: collection | remove: "/collections/" | slice: 0, 5 }} ...
+
+
+
+{{ request.path }} <br><br><br>
+
+{% endcomment %}
+
+
+
+{% assign maincall = page.url | within: collection | remove: "/collections/" | slice: 0, 5    %} 
+
+
+{% if maincall  == "mens-" %}
+{% for link in linklists.megantic-menu.links %}
+
+
+
+        {% if link.links != blank %}
+
+            {% for child_link in link.links %}  
+            
+            
+                  {% if child_link.links != blank %}
+                 
+                         {% for grandchild_link in child_link.links %} 
+
+
+			{% comment %} use combination of objects here... {% endcomment %}
+              		{% assign comp1 = request.path | remove: "/collections/" %}
+                        {% assign comp2 = child_link.url | remove: "/collections/" %}
+
+
+  
+                        {% if comp1  == comp2 %}
+
+
+
+                    		{{comp1 }} ...{{ comp2 }} <br><br><br> {% comment %} {% endcomment %}
+
+
+
+
+
+
+                      {% endif %} 
+
+
+
+
+  
+
+                          {% endfor %}
+                
+                  {% endif %}   
+
+         
+
+            {% endfor %}
+
+
+
+        {% endif %} 
+
+
+{% endfor %}
+{% endif %} 
+
+
+

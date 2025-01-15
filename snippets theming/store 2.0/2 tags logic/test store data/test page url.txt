@@ -1,0 +1,18 @@
+
+
+{% comment %}
+	{{ page.url | within: collection | remove: "/collections/" | slice: 0, 5 }} ...
+
+{% endcomment %}
+
+{% assign maincall = page.url | within: collection | remove: "/collections/" | slice: 0, 5    %} 
+
+
+  {% if maincall  == "women" %}
+
+
+
+
+
+    {% endif %} 
+

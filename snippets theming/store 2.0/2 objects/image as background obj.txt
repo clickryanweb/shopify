@@ -1,0 +1,17 @@
+
+
+
+from
+
+
+<img src="{{ grandchild_link.object.image.src | collection_img_url: 'medium' }}" /> 
+
+
+
+to 
+
+
+  <div class="collection-grid__item-overlay grid__image grid__image--responsive" style="background-image: url('{{ grandchild_link.object.image.src | collection_img_url: 'medium' }}')"></div>
+
+
+

@@ -1,0 +1,10 @@
+
+
+https://shopify.dev/docs/themes/liquid/reference/objects/product#product-tags
+
+
+{% for tag in product.tags %}
+  {{ tag }}
+{% endfor %}
+
+

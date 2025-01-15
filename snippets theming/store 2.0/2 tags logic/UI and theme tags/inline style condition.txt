@@ -1,0 +1,8 @@
+
+
+
+{% if laybuy_count_eligible_variants > 0 %}
+  <p class="laybuy-paragraph" style="display:{% if product.selected_or_first_available_variant.available and product.selected_or_first_available_variant.price >= laybuy_minimum_value_in_cents %}flex{% else %}none{% endif %};" data-product-id="{{ product.id }}">
+  
+
+

@@ -1,0 +1,98 @@
+
+use collection global
+
+{% comment %} need store data  {% endcomment %}
+
+
+
+
+{% comment %} test/access output a collection/object {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection}}
+
+
+
+
+{% comment %} get title of the collection/object {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+
+
+
+
+
+
+{% comment %} loop and get titles of the product collection/object {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+	<li> {{product.title}}</li>
+	
+{% endfor %}
+
+</ul>
+
+
+
+
+
+
+{% comment %} with price {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+	<li> {{product.title}} - {{ pproduct.price | money }} </li>
+	
+{% endfor %}
+
+</ul>
+
+
+
+
+
+{% comment %} with link {% endcomment %}
+
+{% assign collection = collections['featured-collection'] %}
+{{collection.title}}
+
+<ul>
+
+{% for product in collection.products %}
+	<li> <a href="{{product.url}}"> {{product.title}} - {{ pproduct.price | money }} </a></li>
+	
+{% endfor %}
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

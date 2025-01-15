@@ -1,0 +1,95 @@
+
+
+https://codepen.io/nucliweb/pen/ymedj
+
+
+
+currently this is configured at admin -> themes -> customize -> header -> NOTIFICATION TEXT
+and cannot be in multiple entries.
+
+we can implement something like this: https://codepen.io/nucliweb/pen/ymedj
+https://codepen.io/Supha/pen/OQvLEj
+
+solution:
+
+all of the text in custom html (admin template option) so will not edit the header.liquid
+all of the text will slide per line
+
+
+
+
+css:
+
+
+.notify-container{
+display: block;
+  height: 40px;
+  background-color: #fed855;
+   width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-shadow: 0 2px 3px 1px rgb(0 0 0 / 26%);
+    -moz-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26);
+    -o-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26);
+    -webkit-box-shadow: 0 2px 3px 1px rgb(0 0 0 / 26%);
+    -ms-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26);
+}
+
+.notify-1, .notify-2, .notify-3 {
+
+
+position: absolute;
+    /* display: block; */
+    font-size: 10px !important;
+    font-weight: 600;
+    font-family: 'ProximaNovaRegular' !important;
+    line-height: 2;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    overflow: hidden;
+    /* margin-bottom: 37px !important; */
+    padding: 10px 0 0 0;
+    /* text-align: center; */
+    width: 100%;
+
+
+}
+
+.notify-1{
+    animation-name: notify-1;
+}
+
+.notify-2{
+    animation-name: notify-2;
+}
+
+.notify-3{
+    animation-name: notify-3;
+}
+
+
+@keyframes notify-1 {
+    0%, 8.3% { left: -100%; opacity: 0; }
+  8.3%,25% { left: 8%; opacity: 1; }
+  33.33%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes notify-2 {
+    0%, 33.33% { left: -100%; opacity: 0; }
+  41.63%, 58.29% { left: 25%; opacity: 1; }
+  66.66%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes notify-3 {
+    0%, 66.66% { left: -100%; opacity: 0; }
+  74.96%, 91.62% { left: 35%; opacity: 1; }
+  100% { left: 110%; opacity: 1; }
+}
+
+
+
+

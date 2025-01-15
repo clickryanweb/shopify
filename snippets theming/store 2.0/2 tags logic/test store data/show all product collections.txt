@@ -1,0 +1,32 @@
+
+
+https://shopify.dev/docs/themes/liquid/reference/objects/product
+https://shopify.dev/docs/api/liquid/objects/product
+
+
+{% for collection in product.collections %}
+    {{ collection.title }}
+{% endfor %}
+
+
+
+
+
+https://community.shopify.com/c/Shopify-Design/contains-operator-not-working-on-product-collections/td-p/134051
+
+///with condition...
+
+
+  
+      {% for collection in product.collections %}
+          {% if collection.title contains 'women' %}
+           	{% assign prodcoll ='1' %}
+          {% endif %}
+      {% endfor %}
+      
+      
+        
+      
+      <a class="grid-product__image-link" href="{{ product.url }} {% if productTags contains 'Unisex' and prodcoll =='1' %}&unisex=true{% endif %}">
+     
+
